@@ -67,11 +67,11 @@ public class Input {
 		while (br.ready() && request < this.getR()) {
 			line = br.readLine();
 			String[] req = line.split(" ");
-			for (int f = 0; f < this.getR(); f++) {
-				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
-						Integer.parseInt(req[2]));
-				requests.add(r);
-			}
+
+			Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
+					Integer.parseInt(req[2]));
+			requests.add(r);
+
 			request++;
 		}
 
@@ -119,27 +119,26 @@ public class Input {
 		try {
 			i.getData("me_at_the_zoo.in");
 
-			/**
-			 * System.out.println("Videos"); ArrayList<Video> vi =
-			 * i.getVideos(); for (Video v : vi)
-			 * System.out.println(v.toString());
-			 * 
-			 * 
-			 * System.out.println("CacheServers"); ArrayList<CacheServer> cs =
-			 * i.getCacheServers(); for (CacheServer c : cs)
-			 * System.out.println(c.toString());
-			 **/
+			//
+			// System.out.println("Videos"); ArrayList<Video> vi =
+			// i.getVideos(); for (Video v : vi)
+			// System.out.println(v.toString());
+			//
+			//
+			// System.out.println("CacheServers"); ArrayList<CacheServer> cs =
+			// i.getCacheServers(); for (CacheServer c : cs)
+			// System.out.println(c.toString());
+			//
+			//
+			// System.out.println("Endpoints");
+			// ArrayList<EndPoint> en = i.getEndpoints();
+			// for (EndPoint e : en)
+			// System.out.println(e.toString());
 
-			System.out.println("Endpoints");
-			ArrayList<EndPoint> en = i.getEndpoints();
-			for (EndPoint e : en)
-				System.out.println(en.toString());
-
-			/**
-			 * System.out.println("Requests"); ArrayList<Request> re =
-			 * i.getRequests(); for (Request r : re)
-			 * System.out.println(r.toString());
-			 **/
+			System.out.println("Requests");
+			ArrayList<Request> re = i.getRequests();
+			for (Request r : re)
+				System.out.println(r.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
