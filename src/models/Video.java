@@ -34,4 +34,10 @@ public class Video {
 	public int hashCode() {
 		return this.id;
 	}
+
+	@Override
+	public String toString() {
+		return "Video [id=" + id + ", dim=" + dim + "]";
+	}
+	
 }

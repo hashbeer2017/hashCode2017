@@ -16,4 +16,11 @@ public class DataCenter {
 	public void setVideos(ArrayList<Video> videos) {
 		this.videos = videos;
 	}
+
+	@Override
+	public String toString() {
+		return "DataCenter [videos=" + videos + "]";
+	}
+	
+	
 }

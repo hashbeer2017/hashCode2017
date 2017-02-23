@@ -34,4 +34,9 @@ public class Request {
 	public void setNrReq(int nrReq) {
 		this.nrReq = nrReq;
 	}
+
+	@Override
+	public String toString() {
+		return "Request [video=" + video + ", endpoint=" + endpoint + ", nrReq=" + nrReq + "]";
+	}
 }

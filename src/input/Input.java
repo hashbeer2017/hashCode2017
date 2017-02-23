@@ -39,7 +39,6 @@ public class Input {
 			Video v = new Video(i);
 			v.setDim(Integer.parseInt(splitted[i]));
 			videos.add(v);
-			System.out.println(i + " " + Integer.parseInt(splitted[i]));
 		}
 
 		// Endpoints
@@ -55,10 +54,12 @@ public class Input {
 				line = br.readLine();
 				String[] cache = line.split(" ");
 				CacheServer cs = new CacheServer(Integer.parseInt(cache[0]), this.getX());
+				cacheServers.add(cs);
 				map.put(cs, Integer.parseInt(cache[1]));
 				e.setLatenciesCS(map);
 			}
-
+			endpoints.add(e);
+			endpoint++;
 		}
 
 		// Requests
@@ -66,14 +67,35 @@ public class Input {
 		while (br.ready() && request < this.getR()) {
 			line = br.readLine();
 			String[] req = line.split(" ");
+
 			for (int f = 0; f < this.getR(); f++) {
 				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
 						Integer.parseInt(req[2]));
 			}
 
+			Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
+					Integer.parseInt(req[2]));
+			requests.add(r);
+			request++;
 		}
 
 		br.close();
+	}
+
+	public ArrayList<Video> getVideos() {
+		return this.videos;
+	}
+
+	public ArrayList<CacheServer> getCacheServers() {
+		return this.cacheServers;
+	}
+
+	public ArrayList<EndPoint> getEndpoints() {
+		return this.endpoints;
+	}
+
+	public ArrayList<Request> getRequests() {
+		return this.requests;
 	}
 
 	public int getV() {
@@ -99,7 +121,28 @@ public class Input {
 	public static void main(String[] args) {
 		Input i = new Input();
 		try {
-			i.getData("kittens.in");
+			i.getData("me_at_the_zoo.in");
+
+			//
+			// System.out.println("Videos"); ArrayList<Video> vi =
+			// i.getVideos(); for (Video v : vi)
+			// System.out.println(v.toString());
+			//
+			//
+			// System.out.println("CacheServers"); ArrayList<CacheServer> cs =
+			// i.getCacheServers(); for (CacheServer c : cs)
+			// System.out.println(c.toString());
+			//
+			//
+			// System.out.println("Endpoints");
+			// ArrayList<EndPoint> en = i.getEndpoints();
+			// for (EndPoint e : en)
+			// System.out.println(e.toString());
+			//
+			// System.out.println("Requests");
+			// ArrayList<Request> re = i.getRequests();
+			// for (Request r : re)
+			// System.out.println(r.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
