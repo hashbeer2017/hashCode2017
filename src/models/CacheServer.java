@@ -4,13 +4,14 @@ import java.util.ArrayList;
 
 public class CacheServer {
 	private int id;
-	private int emptysize;
-	private int size;
+	private int capacity;
+	private int available;
 	private ArrayList<Video> videos;
 
 	public CacheServer(int id, int es) {
 		this.id = id;
-		this.emptysize = es;
+		this.capacity = es;
+		this.available = this.capacity;
 		this.videos = new ArrayList<Video>();
 	}
 
@@ -23,24 +24,20 @@ public class CacheServer {
 	}
 
 	public int getEmptysize() {
-		return emptysize;
-	}
-
-	public void setEmptysize(int emptysize) {
-		this.emptysize = emptysize;
+		return capacity;
 	}
 
 	public int getSize() {
-		return size;
+		return available;
 	}
 
 	public void setSize(int size) {
-		this.size = size;
+		this.available = size;
 	}
 
 	public void addVideo(Video v) {
 		videos.add(v);
-		size = size - v.getDim();
+		available -=  v.getDim();
 	}
 
 	public ArrayList<Video> getVideos() {
@@ -61,7 +58,7 @@ public class CacheServer {
 
 	@Override
 	public String toString() {
-		String ts = "CacheServer [id=" + id + ", emptysize=" + emptysize + ", size=" + size + ", videos=";
+		String ts = "CacheServer [id=" + id + ", emptysize=" + capacity + ", size=" + available + ", videos=";
 		for (Video v : videos) {
 			ts = ts + v.toString() + " ";
 		}

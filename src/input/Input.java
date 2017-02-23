@@ -20,6 +20,9 @@ public class Input {
 	private ArrayList<EndPoint> endpoints = new ArrayList<EndPoint>();
 	private ArrayList<Request> requests = new ArrayList<Request>();
 
+	private HashMap<Integer, EndPoint> endmap = new HashMap<Integer, EndPoint>();
+	private HashMap<Integer, Video> videomap = new HashMap<Integer, Video>();
+	
 	public void getData(String path) throws IOException {
 		File file = new File(path);
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -39,6 +42,7 @@ public class Input {
 			Video v = new Video(i);
 			v.setDim(Integer.parseInt(splitted[i]));
 			videos.add(v);
+			videomap.put(v.getId(), v);
 		}
 
 		// Endpoints
@@ -58,6 +62,7 @@ public class Input {
 				map.put(cs, Integer.parseInt(cache[1]));
 				e.setLatenciesCS(map);
 			}
+			endmap.put(e.getId(), e);
 			endpoints.add(e);
 			endpoint++;
 		}
@@ -67,13 +72,8 @@ public class Input {
 		while (br.ready() && request < this.getR()) {
 			line = br.readLine();
 			String[] req = line.split(" ");
-
-			for (int f = 0; f < this.getR(); f++) {
-				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
-						Integer.parseInt(req[2]));
-			}
-
-			Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
+			
+			Request r = new Request(videomap.get(Integer.parseInt(req[0])), endmap.get(Integer.parseInt(req[1])),
 					Integer.parseInt(req[2]));
 			requests.add(r);
 			request++;

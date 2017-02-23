@@ -1,15 +1,13 @@
 package hashcode2017;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.List;
 
 import models.*;
 
 public class ServerManager {
-	HashMap<CacheServer, HashSet<Video>> result = new HashMap<CacheServer, HashSet<Video>>();
 	
-	public void manage(LinkedList<Request> request) {
+	public void manage(List<Request> request) {
 		/*
 		 * OBIETTIVO: Creare una lista con priorità. RECORD -> k
 		 * Ogni RECORD della lista rappresenta una richiesta, identificata da VIDEO - PriorityList delle cache candidate 
@@ -22,7 +20,9 @@ public class ServerManager {
 			Video video = req.getVideo();
 			PriorityList<CacheServer> candidate = new PriorityList<CacheServer>();
 			
-			HashMap<CacheServer, Integer> cache_latency = req.getEndpoint().getLatenciesCS();
+			EndPoint e = req.getEndpoint();
+			HashMap<CacheServer, Integer> cache_latency = e.getLatenciesCS();
+			
 			for(CacheServer cache : cache_latency.keySet()){
 				int latency = cache_latency.get(cache);
 				candidate.insert(cache, latency);
@@ -45,7 +45,7 @@ public class ServerManager {
 		PriorityList<CacheServer> candidate = record.priorityList;
 		
 		for(CacheServer cache: candidate){
-			if(video.getDim() < cache.getEmptysize()){
+			if(video.getDim() < cache.getSize()){
 				cache.addVideo(video);
 				break;
 			}	
