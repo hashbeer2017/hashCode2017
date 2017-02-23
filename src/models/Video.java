@@ -23,4 +23,15 @@ public class Video {
 	public void setDim(int dim) {
 		this.dim = dim;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Video v = (Video) obj;
+		return this.id == v.id;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id;
+	}
 }

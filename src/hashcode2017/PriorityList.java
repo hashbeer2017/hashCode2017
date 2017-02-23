@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PriorityList<K> implements Iterable<K>{
-	LinkedList<Pair<K, Integer>> list = new LinkedList<Pair<K,Integer>>();
+	private LinkedList<Pair<K, Integer>> list = new LinkedList<Pair<K,Integer>>();
 	
 	public void insert(K key, Integer value){
 		if(list.isEmpty()){
@@ -47,6 +47,9 @@ public class PriorityList<K> implements Iterable<K>{
 		this.list = result;
 	}
 	
+	public boolean isEmpty(){
+		return this.list.isEmpty();
+	}
 	
 	@Override
 	public Iterator<K> iterator() {		

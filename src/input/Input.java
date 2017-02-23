@@ -67,7 +67,7 @@ public class Input {
 			line = br.readLine();
 			String[] req = line.split(" ");
 			for (int f = 0; f < this.getR(); f++) {
-				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(parseInt(req[1])),
+				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
 						Integer.parseInt(req[2]));
 			}
 
