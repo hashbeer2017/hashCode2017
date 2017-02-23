@@ -67,11 +67,9 @@ public class Input {
 		while (br.ready() && request < this.getR()) {
 			line = br.readLine();
 			String[] req = line.split(" ");
-
 			Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
 					Integer.parseInt(req[2]));
 			requests.add(r);
-
 			request++;
 		}
 
@@ -134,11 +132,11 @@ public class Input {
 			// ArrayList<EndPoint> en = i.getEndpoints();
 			// for (EndPoint e : en)
 			// System.out.println(e.toString());
-
-			System.out.println("Requests");
-			ArrayList<Request> re = i.getRequests();
-			for (Request r : re)
-				System.out.println(r.toString());
+			//
+			// System.out.println("Requests");
+			// ArrayList<Request> re = i.getRequests();
+			// for (Request r : re)
+			// System.out.println(r.toString());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
