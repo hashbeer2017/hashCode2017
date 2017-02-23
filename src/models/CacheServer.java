@@ -7,9 +7,8 @@ public class CacheServer {
 	private int size;
 	private ArrayList<Video> videos;
 	
-	public CacheServer(int id, int size) {
+	public CacheServer(int id) {
 		this.id = id;
-		this.size = size;
 	}
 
 	public int getId() {
@@ -18,6 +17,13 @@ public class CacheServer {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this.id == ((CacheServer) obj).getId())
+			return true;
+		return false;
 	}
 
 	public int getSize() {
