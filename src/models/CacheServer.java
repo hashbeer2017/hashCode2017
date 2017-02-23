@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class CacheServer {
 	private int id;
+	private int emptysize;
 	private int size;
 	private ArrayList<Video> videos;
 	
-	public CacheServer(int id) {
+	public CacheServer(int id, int es) {
 		this.id = id;
+		this.emptysize = es;
 	}
 
 	public int getId() {
@@ -19,11 +21,12 @@ public class CacheServer {
 		this.id = id;
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if (this.id == ((CacheServer) obj).getId())
-			return true;
-		return false;
+	public int getEmptysize() {
+		return emptysize;
+	}
+
+	public void setEmptysize(int emptysize) {
+		this.emptysize = emptysize;
 	}
 
 	public int getSize() {
@@ -33,14 +36,24 @@ public class CacheServer {
 	public void setSize(int size) {
 		this.size = size;
 	}
-
+	
+	public void addVideo(Video v){
+		videos.add(v);
+		size = size - v.getDim();
+	}
+	
 	public ArrayList<Video> getVideos() {
 		return videos;
 	}
-
+	
 	public void setVideos(ArrayList<Video> videos) {
 		this.videos = videos;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this.id == ((CacheServer) obj).getId())
+			return true;
+		return false;
+	}
 }
