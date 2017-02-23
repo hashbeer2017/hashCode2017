@@ -54,6 +54,17 @@ public class CacheServer {
 	public boolean equals(Object obj) {
 		if (this.id == ((CacheServer) obj).getId())
 			return true;
+		
 		return false;
+	}
+
+	@Override
+	public String toString() {
+		String ts = "CacheServer [id=" + id + ", emptysize=" + emptysize + ", size=" + size + ", videos=";
+		for(Video v: videos){
+			ts = ts + v.toString() + " ";
+		}
+		
+		return ts + "]";
 	}
 }

@@ -23,4 +23,11 @@ public class Video {
 	public void setDim(int dim) {
 		this.dim = dim;
 	}
+
+	@Override
+	public String toString() {
+		return "Video [id=" + id + ", dim=" + dim + "]";
+	}
+	
+	
 }
