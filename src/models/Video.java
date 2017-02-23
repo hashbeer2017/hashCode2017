@@ -4,9 +4,8 @@ public class Video {
 	private int id;
 	private int dim;
 	
-	public Video(int id, int dim){
+	public Video(int id){
 		this.id = id;
-		this.dim = dim;
 	}
 	
 	public int getId() {
