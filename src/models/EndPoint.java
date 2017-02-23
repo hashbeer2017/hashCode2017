@@ -39,6 +39,7 @@ public class EndPoint {
 	@Override
 	public String toString() {
 		String ts = "EndPoint [id=" + id + ", latencyDC=" + latencyDC + ", latenciesCS=";
+		
 		for(CacheServer lcs: latenciesCS.keySet()){
 			ts = ts + lcs.toString() + " ";
 		}

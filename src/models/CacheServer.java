@@ -11,6 +11,7 @@ public class CacheServer {
 	public CacheServer(int id, int es) {
 		this.id = id;
 		this.emptysize = es;
+		this.videos = new ArrayList<Video>();
 	}
 
 	public int getId() {
