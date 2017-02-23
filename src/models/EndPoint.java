@@ -2,28 +2,30 @@ package models;
 
 import java.util.HashMap;
 
-public class EndPoint {
+public class Endpoint {
 	private int id;
 	private int latencyDC;
 	private HashMap<Integer, Integer> latenciesCS;
 	
-	public EndPoint(int id){
+	public Endpoint(int id){
 		this.id = id;
 	}
+
+	public int getLatencyDC() {
+		return latencyDC;
+	}
+
+	public void setLatencyDC(int latencyDC) {
+		this.latencyDC = latencyDC;
+	}
+
+	public HashMap<Integer, Integer> getLatenciesCS() {
+		return latenciesCS;
+	}
+
+	public void setLatenciesCS(HashMap<Integer, Integer> latenciesCS) {
+		this.latenciesCS = latenciesCS;
+	}
+
 	
-	public int getLatDC() {
-		return latDC;
-	}
-
-	public void setLatDC(int latDC) {
-		this.latDC = latDC;
-	}
-
-	public HashMap<Integer, Integer> getLatsCS() {
-		return latsCS;
-	}
-
-	public void setLatsCS(HashMap<Integer, Integer> latsCS) {
-		this.latsCS = latsCS;
-	}
 }
