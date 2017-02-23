@@ -70,6 +70,7 @@ public class Input {
 			for (int f = 0; f < this.getR(); f++) {
 				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
 						Integer.parseInt(req[2]));
+				requests.add(r);
 			}
 
 		}
@@ -117,7 +118,9 @@ public class Input {
 		Input i = new Input();
 		try {
 			i.getData("kittens.in");
-
+			ArrayList<CacheServer> cs = i.getCacheServers();
+			for (CacheServer c : cs)
+				System.out.println(c.toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
