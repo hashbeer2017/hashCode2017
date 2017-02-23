@@ -39,7 +39,6 @@ public class Input {
 			Video v = new Video(i);
 			v.setDim(Integer.parseInt(splitted[i]));
 			videos.add(v);
-			System.out.println(i + " " + Integer.parseInt(splitted[i]));
 		}
 
 		// Endpoints
@@ -60,6 +59,7 @@ public class Input {
 				e.setLatenciesCS(map);
 			}
 			endpoints.add(e);
+			endpoint++;
 		}
 
 		// Requests
@@ -72,7 +72,7 @@ public class Input {
 						Integer.parseInt(req[2]));
 				requests.add(r);
 			}
-
+			request++;
 		}
 
 		br.close();
@@ -117,10 +117,29 @@ public class Input {
 	public static void main(String[] args) {
 		Input i = new Input();
 		try {
-			i.getData("kittens.in");
+			i.getData("me_at_the_zoo.in");
+
+			/**
+			 * System.out.println("Videos"); ArrayList<Video> vi =
+			 * i.getVideos(); for (Video v : vi)
+			 * System.out.println(v.toString());
+			 **/
+
+			System.out.println("CacheServers");
 			ArrayList<CacheServer> cs = i.getCacheServers();
 			for (CacheServer c : cs)
 				System.out.println(c.toString());
+
+			/**
+			 * System.out.println("Endpoints"); ArrayList<EndPoint> en =
+			 * i.getEndpoints(); for (EndPoint e : en)
+			 * System.out.println(en.toString());
+			 * 
+			 * System.out.println("Requests"); ArrayList<Request> re =
+			 * i.getRequests(); for (Request r : re)
+			 * System.out.println(r.toString());
+			 **/
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
