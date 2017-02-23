@@ -9,6 +9,7 @@ public class EndPoint {
 
 	public EndPoint(int id){
 		this.id = id;
+		this.latenciesCS = new HashMap<CacheServer, Integer>();
 	}
 
 	public int getId() {
