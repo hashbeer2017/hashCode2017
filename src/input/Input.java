@@ -55,10 +55,11 @@ public class Input {
 				line = br.readLine();
 				String[] cache = line.split(" ");
 				CacheServer cs = new CacheServer(Integer.parseInt(cache[0]), this.getX());
+				cacheServers.add(cs);
 				map.put(cs, Integer.parseInt(cache[1]));
 				e.setLatenciesCS(map);
 			}
-
+			endpoints.add(e);
 		}
 
 		// Requests
@@ -67,13 +68,29 @@ public class Input {
 			line = br.readLine();
 			String[] req = line.split(" ");
 			for (int f = 0; f < this.getR(); f++) {
-				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(parseInt(req[1])),
+				Request r = new Request(new Video(Integer.parseInt(req[0])), new EndPoint(Integer.parseInt(req[1])),
 						Integer.parseInt(req[2]));
 			}
 
 		}
 
 		br.close();
+	}
+
+	public ArrayList<Video> getVideos() {
+		return this.videos;
+	}
+
+	public ArrayList<CacheServer> getCacheServers() {
+		return this.cacheServers;
+	}
+
+	public ArrayList<EndPoint> getEndpoints() {
+		return this.endpoints;
+	}
+
+	public ArrayList<Request> getRequests() {
+		return this.requests;
 	}
 
 	public int getV() {
