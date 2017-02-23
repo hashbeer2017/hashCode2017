@@ -2,12 +2,12 @@ package models;
 
 import java.util.HashMap;
 
-public class Endpoint {
+public class EndPoint {
 	private int id;
 	private int latencyDC;
 	private HashMap<Integer, Integer> latenciesCS;
 	
-	public Endpoint(int id){
+	public EndPoint(int id){
 		this.id = id;
 	}
 
