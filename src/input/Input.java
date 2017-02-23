@@ -123,18 +123,19 @@ public class Input {
 			 * System.out.println("Videos"); ArrayList<Video> vi =
 			 * i.getVideos(); for (Video v : vi)
 			 * System.out.println(v.toString());
+			 * 
+			 * 
+			 * System.out.println("CacheServers"); ArrayList<CacheServer> cs =
+			 * i.getCacheServers(); for (CacheServer c : cs)
+			 * System.out.println(c.toString());
 			 **/
 
-			System.out.println("CacheServers");
-			ArrayList<CacheServer> cs = i.getCacheServers();
-			for (CacheServer c : cs)
-				System.out.println(c.toString());
+			System.out.println("Endpoints");
+			ArrayList<EndPoint> en = i.getEndpoints();
+			for (EndPoint e : en)
+				System.out.println(en.toString());
 
 			/**
-			 * System.out.println("Endpoints"); ArrayList<EndPoint> en =
-			 * i.getEndpoints(); for (EndPoint e : en)
-			 * System.out.println(en.toString());
-			 * 
 			 * System.out.println("Requests"); ArrayList<Request> re =
 			 * i.getRequests(); for (Request r : re)
 			 * System.out.println(r.toString());
