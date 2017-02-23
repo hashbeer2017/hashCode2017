@@ -5,9 +5,17 @@ import java.util.HashMap;
 public class EndPoint {
 	private int id;
 	private int latencyDC;
-	private HashMap<Integer, Integer> latenciesCS;
+	private HashMap<CacheServer, Integer> latenciesCS;
 	
 	public EndPoint(int id){
+		this.id = id;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -19,11 +27,11 @@ public class EndPoint {
 		this.latencyDC = latencyDC;
 	}
 
-	public HashMap<Integer, Integer> getLatenciesCS() {
+	public HashMap<CacheServer, Integer> getLatenciesCS() {
 		return latenciesCS;
 	}
 
-	public void setLatenciesCS(HashMap<Integer, Integer> latenciesCS) {
+	public void setLatenciesCS(HashMap<CacheServer, Integer> latenciesCS) {
 		this.latenciesCS = latenciesCS;
 	}
 
