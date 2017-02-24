@@ -22,7 +22,7 @@ public class Input {
 
 	private HashMap<Integer, EndPoint> endmap = new HashMap<Integer, EndPoint>();
 	private HashMap<Integer, Video> videomap = new HashMap<Integer, Video>();
-	
+
 	public void getData(String path) throws IOException {
 		File file = new File(path);
 		BufferedReader br = new BufferedReader(new FileReader(file));
@@ -72,7 +72,7 @@ public class Input {
 		while (br.ready() && request < this.getR()) {
 			line = br.readLine();
 			String[] req = line.split(" ");
-			
+
 			Request r = new Request(videomap.get(Integer.parseInt(req[0])), endmap.get(Integer.parseInt(req[1])),
 					Integer.parseInt(req[2]));
 			requests.add(r);
@@ -116,38 +116,6 @@ public class Input {
 
 	public int getX() {
 		return this.x;
-	}
-
-	public static void main(String[] args) {
-		Input i = new Input();
-		try {
-			i.getData("me_at_the_zoo.in");
-
-			//
-			// System.out.println("Videos"); ArrayList<Video> vi =
-			// i.getVideos(); for (Video v : vi)
-			// System.out.println(v.toString());
-			//
-			//
-			// System.out.println("CacheServers"); ArrayList<CacheServer> cs =
-			// i.getCacheServers(); for (CacheServer c : cs)
-			// System.out.println(c.toString());
-			//
-			//
-			// System.out.println("Endpoints");
-			// ArrayList<EndPoint> en = i.getEndpoints();
-			// for (EndPoint e : en)
-			// System.out.println(e.toString());
-			//
-			// System.out.println("Requests");
-			// ArrayList<Request> re = i.getRequests();
-			// for (Request r : re)
-			// System.out.println(r.toString());
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }
