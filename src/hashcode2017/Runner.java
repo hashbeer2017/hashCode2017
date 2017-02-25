@@ -17,8 +17,6 @@ public class Runner {
 		}
 		
 		List<Request> request = input.getRequests();
-		//Request r = request.get(0);
-		//System.out.println(r);
 		ServerManager manager = new ServerManager();
 		manager.manage(request);
 		

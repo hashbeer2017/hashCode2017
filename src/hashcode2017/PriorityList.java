@@ -3,20 +3,22 @@ package hashcode2017;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PriorityList<K> implements Iterable<K>{
-	private List<Pair<K, Integer>> list = new ArrayList<Pair<K,Integer>>();
-	HashSet<Pair<K, Integer>>[] array = new HashSet[1000];
+	private List<Pair<K, Integer>> list = new LinkedList<Pair<K,Integer>>();
+	LinkedHashSet<Pair<K, Integer>>[] array = new LinkedHashSet[1000];
 	
 	public void insert(K key, Integer value){
-		if(value > array.length){
-			HashSet<Pair<K, Integer>>[] tmp = new HashSet[value+1];
+		if(value >= array.length){
+			LinkedHashSet<Pair<K, Integer>>[] tmp = new LinkedHashSet[value+1];
 			System.arraycopy(array, 0, tmp, 0, array.length);
 			array = tmp;
 		}
 		if(array[value] == null){
-			array[value] = new HashSet<Pair<K, Integer>>();
+			array[value] = new LinkedHashSet<Pair<K, Integer>>();
 		}
 		array[value].add(new Pair<K, Integer>(key, value));
 	}
