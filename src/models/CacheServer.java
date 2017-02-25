@@ -1,18 +1,19 @@
 package models;
 
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class CacheServer {
 	private int id;
 	private int capacity;
 	private int available;
-	private ArrayList<Video> videos;
+	private HashSet<Video> videos;
 
 	public CacheServer(int id, int es) {
 		this.id = id;
 		this.capacity = es;
 		this.available = this.capacity;
-		this.videos = new ArrayList<Video>();
+		this.videos = new HashSet<Video>();
 	}
 
 	public int getId() {
@@ -40,20 +41,21 @@ public class CacheServer {
 		available -=  v.getDim();
 	}
 
-	public ArrayList<Video> getVideos() {
+	public Set<Video> getVideos() {
 		return videos;
 	}
-
-	public void setVideos(ArrayList<Video> videos) {
-		this.videos = videos;
-	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this.id == ((CacheServer) obj).getId())
 			return true;
 
 		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.id;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class Runner {
 	public static void main(String[] args) {
 		Input input = new Input();
 		try {
-			input.getData("example.in");
+			input.getData("me_at_the_zoo.in");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -30,12 +30,15 @@ public class Runner {
 		System.out.println(count);
 		
 		for(CacheServer cache: input.getCacheServers()){
-			System.out.print(cache.getId() + " ");
-			
-			for(Video v : cache.getVideos()){
-				System.out.print(v.getId() + " ");
+			if(!cache.getVideos().isEmpty()){
+				System.out.print(cache.getId() + " ");
+				
+				for(Video v : cache.getVideos()){
+					System.out.print(v.getId() + " ");
+				}
+				System.out.println("");
 			}
-			System.out.println("");
+			
 		}
 
 	}

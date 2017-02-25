@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import models.CacheServer;
 import models.EndPoint;
@@ -16,12 +18,14 @@ public class Input {
 
 	private int v, e, r, x, c = 0;
 	private ArrayList<Video> videos = new ArrayList<Video>();
-	private ArrayList<CacheServer> cacheServers = new ArrayList<CacheServer>();
+	private HashSet<CacheServer> cacheServers = new HashSet<CacheServer>();
 	private ArrayList<EndPoint> endpoints = new ArrayList<EndPoint>();
 	private ArrayList<Request> requests = new ArrayList<Request>();
 
 	private HashMap<Integer, EndPoint> endmap = new HashMap<Integer, EndPoint>();
 	private HashMap<Integer, Video> videomap = new HashMap<Integer, Video>();
+	
+	
 
 	public void getData(String path) throws IOException {
 		File file = new File(path);
@@ -86,7 +90,7 @@ public class Input {
 		return this.videos;
 	}
 
-	public ArrayList<CacheServer> getCacheServers() {
+	public Set<CacheServer> getCacheServers() {
 		return this.cacheServers;
 	}
 
