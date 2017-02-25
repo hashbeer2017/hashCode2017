@@ -11,13 +11,14 @@ public class Runner {
 	public static void main(String[] args) {
 		Input input = new Input();
 		try {
-			input.getData("trending_today.in");
+			input.getData("data/kittens.in");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		List<Request> request = input.getRequests();
-		
+		//Request r = request.get(0);
+		//System.out.println(r);
 		ServerManager manager = new ServerManager();
 		manager.manage(request);
 		

@@ -1,100 +1,48 @@
 package hashcode2017;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.Random;
+import java.util.List;
 
 public class PriorityList<K> implements Iterable<K>{
-	private ArrayList<Pair<K, Integer>> list = new ArrayList<Pair<K,Integer>>();
+	private List<Pair<K, Integer>> list = new ArrayList<Pair<K,Integer>>();
 	HashSet<Pair<K, Integer>>[] array = new HashSet[1000];
 	
-	public void orderedInsert(K key, Integer value){
-		if(list.isEmpty()){
-			list.add(new Pair<K, Integer>(key,value));
-		} else {
-			boolean ok = false;
-			int i = 0;
-			
-			while(!ok){
-				if(value < list.get(i).value){
-					list.add(i, new Pair<K, Integer>(key, value));
-					ok = true;
-				} else {
-					if(i == list.size()-1){
-						list.add(new Pair<K, Integer>(key, value));
-						ok = true;
-					} else {
-						i++;
-					}
-				}
-			}
-			
-		}
-	}
-	
 	public void insert(K key, Integer value){
-		list.add(new Pair<K, Integer>(key, value));
-	}
-	
-	public void hashInsert(K key, Integer value){
+		if(value > array.length){
+			HashSet<Pair<K, Integer>>[] tmp = new HashSet[value+1];
+			System.arraycopy(array, 0, tmp, 0, array.length);
+			array = tmp;
+		}
 		if(array[value] == null){
 			array[value] = new HashSet<Pair<K, Integer>>();
 		}
 		array[value].add(new Pair<K, Integer>(key, value));
 	}
 	
-	public void hashSort(){
+	public void sort() {
 		for(int i = 0; i < array.length; i++){
 			HashSet<Pair<K, Integer>> set = array[i];
-			if(set != null){
+			if(set != null && !set.isEmpty()){
 				for(Pair<K, Integer> pair : set){
 					list.add(pair);
 				}
 			}
 		}
+		array = null;
 	}
 	
-	public Integer get(K key){
-		for(Pair<K, Integer> pair : list){
-			if(pair.key.equals(key))
-				return pair.value;
+	public void sortDesc() {
+		for(int i = array.length - 1; i >= 0; i--){
+			HashSet<Pair<K, Integer>> set = array[i];
+			if(set != null && !set.isEmpty()){
+				for(Pair<K, Integer> pair : set){
+					list.add(pair);
+				}
+			}
 		}
-		
-		return -1;
-	}
-	
-	public void sort(){
-		list.sort(new Comparator<Pair<K, Integer>>() {
-
-			@Override
-			public int compare(PriorityList<K>.Pair<K, java.lang.Integer> o1,
-					PriorityList<K>.Pair<K, java.lang.Integer> o2) {
-				if(o1.value > o2.value)
-					return +1;
-				else if (o1.value < o2.value)
-					return -1;
-				else
-					return 0;
-			}
-		});
-	}
-	
-	public void sortDesc(){
-		list.sort(new Comparator<Pair<K, Integer>>() {
-
-			@Override
-			public int compare(PriorityList<K>.Pair<K, java.lang.Integer> o1,
-					PriorityList<K>.Pair<K, java.lang.Integer> o2) {
-				if(o1.value < o2.value)
-					return +1;
-				else if (o1.value > o2.value)
-					return -1;
-				else
-					return 0;
-			}
-		});
+		array = null;
 	}
 
 	public boolean isEmpty(){
@@ -133,53 +81,6 @@ public class PriorityList<K> implements Iterable<K>{
 		public String toString() {
 			return key + " " + value;
 		}
-	}
-	
-	public static void main(String[] args) {
-		System.out.println("BENCHMARK-----------");
-		
-		// Generate dataset
-		long startTime = System.currentTimeMillis();
-		PriorityList<String> dataInsert = new PriorityList<String>();
-		for(int i = 0; i < 10000; i++){
-			dataInsert.insert("a", new Random().nextInt(10000));
-		}
-		dataInsert.sort();
-		long endTime   = System.currentTimeMillis();
-		long totalTime = endTime - startTime;
-		System.out.println("Insert + sort: " + totalTime);
-		
-		
-		
-		startTime = System.currentTimeMillis();
-		dataInsert = new PriorityList<String>();
-		for(int i = 0; i < 1000; i++){
-			dataInsert.orderedInsert("a", new Random().nextInt(1000));
-		}
-		endTime   = System.currentTimeMillis();
-		totalTime = endTime - startTime;
-		System.out.println("Ordered insert: " + totalTime);
-		
-		
-		
-		startTime = System.currentTimeMillis();
-		dataInsert = new PriorityList<String>();
-		for(int i = 0; i < 1000; i++){
-			dataInsert.hashInsert("a", new Random().nextInt(1000));
-		}
-		dataInsert.hashSort();
-		endTime   = System.currentTimeMillis();
-		totalTime = endTime - startTime;
-		System.out.println("Hash insert: " + totalTime);
-		
-		
-		System.out.println("--------------------");
-		
-		
-		
-		
-		
-		
 	}
 
 }

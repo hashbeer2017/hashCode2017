@@ -31,10 +31,11 @@ public class ServerManager {
 			}
 			candidate.sort();
 			
-			if(!candidate.isEmpty())
+			if(!candidate.isEmpty()){
 				list.insert(new Record(video, candidate), req.getNrReq());
-			list.sortDesc();
+			}
 		}
+		list.sortDesc();
 		
 		
 		// Sistemo ogni video nella cache più efficiente
