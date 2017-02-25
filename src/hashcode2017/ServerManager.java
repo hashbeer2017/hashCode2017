@@ -16,6 +16,7 @@ public class ServerManager {
 		
 		// Creo la lista
 		PriorityList<Record> list = new PriorityList<>();
+		
 		for(Request req : request){
 			Video video = req.getVideo();
 			PriorityList<CacheServer> candidate = new PriorityList<CacheServer>();
@@ -26,12 +27,15 @@ public class ServerManager {
 			for(CacheServer cache : cache_latency.keySet()){
 				int latency = cache_latency.get(cache);
 				candidate.insert(cache, latency);
+				
 			}
+			candidate.sort();
 			
 			if(!candidate.isEmpty())
 				list.insert(new Record(video, candidate), req.getNrReq());
+			list.sortDesc();
 		}
-		list.reverse();
+		
 		
 		// Sistemo ogni video nella cache più efficiente
 		for(Record record : list){

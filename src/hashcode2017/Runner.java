@@ -11,7 +11,7 @@ public class Runner {
 	public static void main(String[] args) {
 		Input input = new Input();
 		try {
-			input.getData("me_at_the_zoo.in");
+			input.getData("trending_today.in");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
